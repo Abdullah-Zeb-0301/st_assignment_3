@@ -16,11 +16,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Download MySQL Connector/J
+    - name: Download MySQL Connector/J (Direct JAR download)
       run: |
-        curl -L -o mysql-connector-java-8.0.28.jar https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.28.tar.gz
-        tar -xzf mysql-connector-java-8.0.28.tar.gz
-        mv mysql-connector-java-8.0.28/mysql-connector-java-8.0.28.jar ./mysql-connector-java-8.0.28.jar
+        curl -L -o mysql-connector-java-8.0.28.jar https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.28.jar
 
     - name: List files (Debugging step)
       run: ls -R
