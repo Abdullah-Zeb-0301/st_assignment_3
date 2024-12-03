@@ -25,9 +25,12 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-
+    - name: Compile Java Code
+      run: |
+        # Manually specify the files to compile
+        javac -cp ./src/mysql-connector-j-9.0.0.jar -d ./bin ./src/LoginApp.java ./src/LoginAppTest.java  # Add more files if needed
 
     - name: Run Main Class
       run: |
-        # Ensure the classpath includes both the compiled classes and the mysql connector
-        java -cp ./src/mysql-connector-j-9.0.0.jar LoginApp
+        # Run the LoginApp class (assuming it's in the default package or the correct package is used)
+        java -cp ./bin:./src/mysql-connector-j-9.0.0.jar LoginApp
