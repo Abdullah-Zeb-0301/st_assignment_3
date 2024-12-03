@@ -37,7 +37,6 @@ public class LoginApp extends JFrame {
         JButton loginButton = new JButton("Login");
         loginButton.addActionListener(new LoginAction());
         panel.add(loginButton);
-        System.out.println("Debugging statement added");
 
 
         add(panel);
@@ -61,7 +60,7 @@ public class LoginApp extends JFrame {
     private String authenticateUser(String email) {
         String userName = null;
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-            String query = "SELECT name FROM User WHERE Email = ?";
+            String query = "SELECT Name FROM User WHERE Email = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
