@@ -29,12 +29,11 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-
     - name: Compile Java Code
       run: |
         # Ensure that the source files are compiled correctly
-        javac -cp ./src/mysql-connector-java-8.0.28.jar -d ./bin ./src/**/*.java
+        javac -cp "./src/mysql-connector-java-8.0.28.jar" -d ./bin ./src/**/*.java
 
     - name: Run Main Class
       run: |
-        java -cp ./bin:./src/mysql-connector-java-8.0.28.jar LoginAppTest
+        java -cp "./bin:./src/mysql-connector-java-8.0.28.jar" LoginAppTest
