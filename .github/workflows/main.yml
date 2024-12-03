@@ -1,32 +1,29 @@
-name: Java CI Pipeline
+name: Java CI
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
-      - master
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
-    
+
     steps:
-      # Step 1: Checkout the code
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      # Step 2: Set up Java environment
-      - name: Setup JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: '11'
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17' # Adjust based on your Java version
+        distribution: 'temurin'
 
-      # Step 3: Compile the project
-      - name: Compile Project
-        run: javac -cp .:mysql-connector-j-9.0.0.jar LoginApp.java
+    - name: Compile Java Code
+      run: javac -cp ./src:./src/mysql-connector-j-9.0.0.jar ./src/LoginApp.java
 
-      # Step 4: Run unit tests
-      - name: Run Unit Tests
-        run: |
-          java -cp .:mysql-connector-j-9.0.0.jar org.junit.runner.JUnitCore LoginAppTest
+    - name: Run Tests
+      run: java -cp ./src:./src/mysql-connector-j-9.0.0.jar LoginAppTest.java
