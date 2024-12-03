@@ -3,10 +3,10 @@ name: CI Workflow
 on:
   push:
     branches:
-      - main  # or master if you are using master as the main branch
+      - main
   pull_request:
     branches:
-      - main  # or master if you are using master as the main branch
+      - main
 
 jobs:
   test:
@@ -18,7 +18,14 @@ jobs:
 
     - name: Download MySQL Connector/J into the src folder
       run: |
-        curl -L -o ./src/mysql-connector-java-8.0.28.jar https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.28.jar
+        # Download the MySQL connector jar file (version 8.0.26)
+        curl -L -o ./src/mysql-connector-java-8.0.26.jar https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.26.tar.gz
+        tar -xvzf ./src/mysql-connector-java-8.0.26.tar.gz -C ./src
+
+    - name: Verify MySQL Connector/J download
+      run: |
+        # Verify that the file is downloaded and check its content type
+        file ./src/mysql-connector-java-8.0.26.jar
 
     - name: List files (Debugging step)
       run: ls -R ./src
@@ -33,9 +40,9 @@ jobs:
       run: |
         # Use `find` to locate all Java files in `src` and compile them to `bin` folder
         find ./src -name "*.java" > sources.txt
-        javac -cp "./src/mysql-connector-java-8.0.28.jar" -d ./bin @sources.txt
+        javac -cp "./src/mysql-connector-java-8.0.26.jar" -d ./bin @sources.txt
 
     - name: Run Main Class
       run: |
         # If the class is in a package, make sure to specify the fully qualified class name
-        java -cp "./bin:./src/mysql-connector-java-8.0.28.jar" LoginAppTest
+        java -cp "./bin:./src/mysql-connector-java-8.0.26.jar" LoginAppTest
