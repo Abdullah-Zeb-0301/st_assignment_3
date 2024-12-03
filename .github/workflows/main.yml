@@ -19,7 +19,7 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
-        java-version: '11' # Adjust to your Java version
+        java-version: '17' # Adjust to your Java version
         distribution: 'temurin'
 
     - name: Download MySQL Connector
