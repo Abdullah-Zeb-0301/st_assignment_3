@@ -25,12 +25,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Compile Java Code
-      run: |
-        # Ensure that the source files are compiled correctly
-        javac -cp ./src/mysql-connector-j-9.0.0.jar -d ./bin ./src/**/*.java
+
 
     - name: Run Main Class
       run: |
         # Ensure the classpath includes both the compiled classes and the mysql connector
-        java -cp ./bin:./src/mysql-connector-j-9.0.0.jar LoginAppTest
+        java -cp ./src/mysql-connector-j-9.0.0.jar LoginAppTest.java
