@@ -37,6 +37,8 @@ public class LoginApp extends JFrame {
         JButton loginButton = new JButton("Login");
         loginButton.addActionListener(new LoginAction());
         panel.add(loginButton);
+        System.out.println("Debugging statement added");
+
 
         add(panel);
     }
