@@ -30,4 +30,4 @@ jobs:
     - name: Run Main Class
       run: |
         # Ensure the classpath includes both the compiled classes and the mysql connector
-        java -cp ./src/mysql-connector-j-9.0.0.jar LoginAppTest.java
+        java -cp ./src/mysql-connector-j-9.0.0.jar LoginAppTest
