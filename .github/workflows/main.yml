@@ -27,9 +27,11 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '11'
+        distribution: 'adoptium'
 
     - name: Compile Java Code
       run: |
+        # Ensure that the source files are compiled correctly
         javac -cp ./src/mysql-connector-java-8.0.28.jar -d ./bin ./src/**/*.java
 
     - name: Run Main Class
