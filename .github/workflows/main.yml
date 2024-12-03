@@ -19,7 +19,7 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
-        java-version: '17' # Adjust to your Java version
+        java-version: '11' # Adjust to your Java version
         distribution: 'temurin'
 
     - name: Download MySQL Connector
@@ -32,10 +32,10 @@ jobs:
         wget https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.8.2/junit-platform-console-standalone-1.8.2.jar
         mv junit-platform-console-standalone-1.8.2.jar ./src/
 
-    - name: Compile Java Code and Test
+    - name: Compile Java Code
       run: |
-        # Compile the Java code
         javac -cp ./src:./src/mysql-connector-java-9.0.0.jar:./src/junit-platform-console-standalone-1.8.2.jar ./src/LoginApp.java ./src/LoginAppTest.java
 
-        # Run the test using JUnit
+    - name: Run JUnit Tests
+      run: |
         java -cp ./src:./src/mysql-connector-java-9.0.0.jar:./src/junit-platform-console-standalone-1.8.2.jar org.junit.platform.console.ConsoleLauncher --scan-classpath
