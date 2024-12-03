@@ -31,9 +31,11 @@ jobs:
 
     - name: Compile Java Code
       run: |
-        # Ensure that the source files are compiled correctly
-        javac -cp "./src/mysql-connector-java-8.0.28.jar" -d ./bin ./src/**/*.java
+        # Use `find` to locate all Java files in `src` and compile them to `bin` folder
+        find ./src -name "*.java" > sources.txt
+        javac -cp "./src/mysql-connector-java-8.0.28.jar" -d ./bin @sources.txt
 
     - name: Run Main Class
       run: |
+        # If the class is in a package, make sure to specify the fully qualified class name
         java -cp "./bin:./src/mysql-connector-java-8.0.28.jar" LoginAppTest
