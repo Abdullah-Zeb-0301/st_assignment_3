@@ -32,6 +32,9 @@ jobs:
         wget https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.8.2/junit-platform-console-standalone-1.8.2.jar
         mv junit-platform-console-standalone-1.8.2.jar ./src/
 
+    - name: List files in src directory
+      run: ls -R ./src
+
     - name: Compile Java Code
       run: |
         javac -cp ./src:./src/mysql-connector-java-9.0.0.jar:./src/junit-platform-console-standalone-1.8.2.jar ./src/LoginApp.java ./src/LoginAppTest.java
